@@ -33,12 +33,10 @@ public class UserDAO {
         } else {
             // Здесь код обновления существующей записи
 
-            //*************************************************** ТУТ
-            var sql2 = "ALTER TABLE users RENAME COLUMN ? TO ?";
+            /*var sql2 = "ALTER TABLE users RENAME COLUMN ? TO ?";
             try (var stmt = connection.prepareStatement(sql2)) {
                 stmt.executeUpdate();
-            }
-            //***************************************************
+            }*/
         }
     }
 
@@ -60,14 +58,13 @@ public class UserDAO {
         }
     }
 
-    //*************************************************** И ТУТ
     public void remove(User user) throws SQLException {
         if (user.getId() != null) {
-            var sql3 = "DELETE FROM users WHERE username = 'Maria'";
+            var sql3 = "DELETE FROM users WHERE id = ?";
             try (var statement = connection.prepareStatement(sql3)) {
+                statement.setLong(1, user.getId());
                 statement.executeUpdate();
             }
         }
     }
-    //***************************************************
 }
