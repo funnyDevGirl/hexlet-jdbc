@@ -59,6 +59,9 @@ public class UserDAO {
     }
 
     public void remove(User user) throws SQLException {
+        if (user.getId() == null) {
+            return;
+        }
         if (user.getId() != null) {
             var sql3 = "DELETE FROM users WHERE id = ?";
             try (var statement = connection.prepareStatement(sql3)) {
